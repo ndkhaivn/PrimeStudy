@@ -45,7 +45,15 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
-Router::extensions(['json', 'xml']);
+Router::prefix('api', function ($routes) {
+    $routes->resources('Students');
+    $routes->resources('Lessons');
+    $routes->resources('Studies');
+    $routes->resources('StudyClasses');
+    $routes->resources('Subjects');
+    $routes->resources('Teachers');
+    $routes->resources('Users');
+});
 
 Router::scope('/', function (RouteBuilder $routes) {
     // Register scoped middleware for in scopes.
@@ -57,7 +65,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * Apply a middleware to the current route scope.
      * Requires middleware to be registered via `Application::routes()` with `registerMiddleware()`
      */
-    $routes->applyMiddleware('csrf');
+//    $routes->applyMiddleware('csrf');
 
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -71,7 +79,6 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-    $routes->resources('Lessons');
 
     /**
      * Connect catchall routes for all controllers.
