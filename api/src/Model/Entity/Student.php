@@ -11,7 +11,6 @@ use Cake\ORM\Entity;
  * @property string $last_name
  * @property int|null $order_in_class
  * @property \Cake\I18n\FrozenTime|null $created
- * @property int $group_id
  * @property int $study_class_id
  *
  * @property \App\Model\Entity\Group $group
@@ -34,7 +33,6 @@ class Student extends Entity
         'last_name' => true,
         'order_in_class' => true,
         'created' => true,
-        'group_id' => true,
         'study_class_id' => true,
         'group' => true,
         'study_class' => true,

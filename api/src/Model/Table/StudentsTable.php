@@ -9,7 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Students Model
  *
- * @property \App\Model\Table\GroupsTable&\Cake\ORM\Association\BelongsTo $Groups
  * @property \App\Model\Table\StudyClassesTable&\Cake\ORM\Association\BelongsTo $StudyClasses
  * @property \App\Model\Table\StudiesTable&\Cake\ORM\Association\HasMany $Studies
  *
@@ -42,10 +41,6 @@ class StudentsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Groups', [
-            'foreignKey' => 'group_id',
-            'joinType' => 'INNER',
-        ]);
         $this->belongsTo('StudyClasses', [
             'foreignKey' => 'study_class_id',
             'joinType' => 'INNER',
@@ -97,7 +92,6 @@ class StudentsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['order_in_class']));
-        $rules->add($rules->existsIn(['group_id'], 'Groups'));
         $rules->add($rules->existsIn(['study_class_id'], 'StudyClasses'));
 
         return $rules;
