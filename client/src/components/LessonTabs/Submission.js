@@ -70,7 +70,7 @@ export default function Submission(props) {
   }, [files]);
 
   return (
-    <section className="container">
+    <section className="container text-center">
       <div {...getRootProps({className: 'dropzone'})}>
         <input {...getInputProps()} />
         <Button
