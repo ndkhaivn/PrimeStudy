@@ -3,15 +3,16 @@ import Sidebar from "./Sidebar";
 import ReactPlayer from "react-player";
 import { Tab, Tabs } from "@blueprintjs/core";
 import Submission from './LessonTabs/Submission';
-
+import useWindowSize from '../hooks/useWindowSize';
 
 export default function Lesson() {
   const targetRef = useRef();
   const [tabId, setTabId] = useState("t0");
+  const wSize = useWindowSize();
   return (
     <div>
-      <Sidebar />
-
+      {wSize.width > 991 ? <Sidebar /> : null}
+      
       <div className="main-panel">
         <iframe
           className="video-player"

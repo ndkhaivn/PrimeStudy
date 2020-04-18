@@ -64,3 +64,17 @@
 .nav-tab {
   margin: 5px 20px 5px 20px;
 }
+
+.corner-button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+/* ==================== width 900 ==================== */
+
+@media (max-width: 991px) {
+  .main-panel {
+    width: 100%
+  }
+}
