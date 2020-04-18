@@ -1,7 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import ReactPlayer from "react-player";
 import { Tab, Tabs } from "@blueprintjs/core";
+import Submission from './LessonTabs/Submission';
+
 
 export default function Lesson() {
   const targetRef = useRef();
@@ -41,7 +43,7 @@ export default function Lesson() {
             className="nav-tab"
             id="t2"
             title="React"
-            panel={<div> c </div>}
+            panel={<Submission/>}
           />
           <Tabs.Expander />
         </Tabs>
