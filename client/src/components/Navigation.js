@@ -18,8 +18,11 @@ export default function Navigation() {
       <NavbarGroup>
         <NavbarHeading>Prime Study</NavbarHeading>
         <NavbarDivider />
-        <Link to="/lesson">
+        <Link to="/schedule">
           <AnchorButton text={t("Schedule")} minimal rightIcon="calendar" />
+        </Link>
+        <Link to="/lesson">
+          <AnchorButton text={t("Lesson")} minimal rightIcon="presentation" />
         </Link>
       </NavbarGroup>
     </Navbar>

@@ -8,6 +8,11 @@ import Navigation from './components/Navigation';
 import Sidebar from './components/Sidebar';
 import { useTranslation } from 'react-i18next';
 import Lesson from './components/Lesson';
+import Schedule from './components/Schedule';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:8765/api';
+axios.defaults.headers.common['Accept'] = 'application/json';
 
 function App() {
 
@@ -16,7 +21,17 @@ function App() {
       
       <BrowserRouter>
         <Navigation/> 
-        <Lesson/>
+
+        <Switch>
+          <Route path="/lesson">
+            <Lesson/>
+          </Route>
+
+          <Route path="/schedule">
+            <Schedule/>
+          </Route>
+        </Switch>
+        
       </BrowserRouter>
     </Provider>
   );
