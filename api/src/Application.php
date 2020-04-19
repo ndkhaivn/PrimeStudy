@@ -35,6 +35,7 @@ class Application extends BaseApplication
     public function bootstrap()
     {
         $this->addPlugin('Crud');
+        $this->addPlugin('Cors', ['bootstrap' => true, 'routes' => false]);
 
         // Call parent to load bootstrap from files.
         parent::bootstrap();
@@ -52,6 +53,7 @@ class Application extends BaseApplication
         }
 
         // Load more plugins here
+
     }
 
     /**
@@ -95,7 +97,6 @@ class Application extends BaseApplication
         }
 
         $this->addPlugin('Migrations');
-
         // Load more plugins here
     }
 }

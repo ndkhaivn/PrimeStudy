@@ -47,7 +47,9 @@ Router::defaultRouteClass(DashedRoute::class);
 
 Router::prefix('api', function ($routes) {
     $routes->resources('Students');
-    $routes->resources('Lessons');
+    $routes->resources('Lessons', [
+        'map' => ['schedule' => ['action' => 'schedule', 'method' => 'GET']]
+    ]);
     $routes->resources('Studies');
     $routes->resources('StudyClasses');
     $routes->resources('Subjects');
