@@ -7,12 +7,14 @@ import useWindowSize from "../hooks/useWindowSize";
 import Requirements from "./LessonTabs/Requirements";
 import Content from './LessonTabs/Content';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 export default function Lesson() {
   const targetRef = useRef();
   const [tabId, setTabId] = useState("requirements");
   const wSize = useWindowSize();
   const { t } = useTranslation();
+  const lesson = useSelector(state => state.lesson);
   return (
     <div>
       <div className="main-panel">
@@ -21,7 +23,7 @@ export default function Lesson() {
         <div className="lesson-content">
           <iframe
             className="video-player"
-            // src="https://www.youtube.com/embed/FlJW9R9DFaQ"
+            src={"https://www.youtube.com/embed/" + lesson.youtube_src}
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen={true}
