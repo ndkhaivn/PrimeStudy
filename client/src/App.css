@@ -86,10 +86,25 @@
   white-space: normal;
 }
 
+.login-card {
+  max-width: 350px;
+  margin: auto;
+  margin-top: 200px;
+}
+
+.login-form {
+  padding: 20px;
+}
+
 /* ==================== width 900 ==================== */
 
 @media (max-width: 991px) {
   .lesson-content {
     width: 100%;
   }
+
+  .nav-bar .bp3-button-text {
+    display: none
+  }
+
 }

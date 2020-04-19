@@ -23,6 +23,8 @@ class StudentsController extends AppController
             'contain' => ['StudyClasses']
         ]);
 
+        $student->type = "STUDENT";
+
         if (!is_null($student) && $password === '4bthdqn') {
             $this->set([
                 'response' => $student,

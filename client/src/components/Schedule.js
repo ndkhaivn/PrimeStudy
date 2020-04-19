@@ -47,7 +47,7 @@ export default function Schedule() {
         defaultView="dayGridWeek"
         plugins={[dayGridPlugin]}
         allDayDefault="true"
-        firstDay={1}
+        firstDay={1} // monday as first day of week
         events={queryLessons}
         eventClick={handleLessonClick}
       />
