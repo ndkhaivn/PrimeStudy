@@ -16,7 +16,7 @@ import { useDispatch } from 'react-redux';
 
 export default function Navigation() {
   const { t, i18n } = useTranslation();
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState("vi");
   const dispatch = useDispatch();
 
   return (
@@ -43,8 +43,8 @@ export default function Navigation() {
               i18n.changeLanguage(event.currentTarget.value);
             }}
           >
-            <option value="en" selected> en </option>
-            <option value="vi">vi</option>
+            <option value="en"> en </option>
+            <option value="vi" selected>vi</option>
           </select>
         </div>
       </NavbarGroup>
