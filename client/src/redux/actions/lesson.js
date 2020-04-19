@@ -1,6 +1,15 @@
 import axios from 'axios';
 import { SET_LESSON } from '../actionTypes';
 
+export const setLesson = (lesson) => (dispatch) => {
+
+  dispatch({
+    type: SET_LESSON,
+    payload: lesson
+  });
+
+}
+
 export const getLesson = (lessonId) => (dispatch) => {
   axios.get(`/lessons/${lessonId}`)
     .then(res => {
@@ -10,5 +19,4 @@ export const getLesson = (lessonId) => (dispatch) => {
       })
     })
     .catch(error => console.log(error))
-
 }

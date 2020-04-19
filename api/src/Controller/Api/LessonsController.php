@@ -15,7 +15,6 @@ class LessonsController extends AppController
 {
 
     public function schedule() {
-
         $this->loadModel('Lessons');
 
         $start = $this->request->getQuery('start');
@@ -29,7 +28,8 @@ class LessonsController extends AppController
                 'date >' => $startDate,
                 'date <' => $endDate,
                 'study_class_id' => $class_id
-            ]);
+            ])
+            ->contain(['Subjects']);
 
         $this->set([
             'response' => $lessons,

@@ -1,9 +1,5 @@
 export const toDateHeader = function(date, lang) {
 
-  if (!date) {
-    date = new Date();
-  }
-
   if (lang === 'en') {
     return date.toDateString();
   } else if (lang === 'vi') {

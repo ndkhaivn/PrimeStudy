@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getLesson } from '../redux/actions/lesson';
+import { setLesson } from '../redux/actions/lesson';
 
 const queryLessons = (info, successCallback, failureCallback) => {
   axios
@@ -19,6 +19,7 @@ const queryLessons = (info, successCallback, failureCallback) => {
       successCallback(
         res.data.map((lesson) => ({
           id: lesson.id,
+          data: lesson,
           title: `${lesson.subject_id}: ${lesson.title}`,
           start: lesson.date,
           end: lesson.date,
@@ -37,7 +38,7 @@ export default function Schedule() {
 
   const handleLessonClick = (info) => {
     history.push('/lesson');
-    dispatch(getLesson(info.event.id));
+    dispatch(setLesson(info.event.extendedProps.data));
   };
 
   return (
