@@ -63,5 +63,10 @@ export default function Submission(props) {
       inputWithFilesContent={t("Add Files")}
     />
   );
-  return <div>{submitMarkup}</div>;
+  return (
+    <div>
+      <h3>{t("Full name")}: {student.last_name + ' ' + student.first_name}</h3>
+      {submitMarkup}
+    </div>
+  );
 }

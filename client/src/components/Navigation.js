@@ -44,7 +44,7 @@ export default function Navigation() {
             }}
           >
             <option value="en"> en </option>
-            <option value="vi" selected>vi</option>
+            <option value="vi">vi</option>
           </select>
         </div>
       </NavbarGroup>

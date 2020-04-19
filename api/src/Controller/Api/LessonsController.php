@@ -27,7 +27,7 @@ class LessonsController extends AppController
 
         $lessons = $this->Lessons->find('all')
             ->where([
-                'date >' => $startDate,
+                'date >=' => $startDate,
                 'date <' => $endDate,
                 'study_class_id' => $class_id
             ])
