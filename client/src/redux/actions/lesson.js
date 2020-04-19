@@ -20,3 +20,17 @@ export const getLesson = (lessonId) => (dispatch) => {
     })
     .catch(error => console.log(error))
 }
+
+export const submit = (submission) => (dispatch) => {
+
+  const formData = new FormData();
+
+  formData.append('files', submission.files);
+  formData.append('student-id', submission.studentId);
+
+  axios.post(`/lessons/${submission.lessonId}/submit`, { files: submission.files, "student-id": submission.studentId })
+    .then(res => {
+      
+    })
+    .catch(error => console.log(error))
+}

@@ -13,9 +13,9 @@ class FilesController extends AppController
         $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
 
         $target_dir = WWW_ROOT.'upload/';
-        $target_file = $target_dir . md5(time()) . '.' . $extension;
+        $target_file = $this->request->getData('file-name');
 
-        move_uploaded_file($file['tmp_name'], $target_file);
+        move_uploaded_file($file['tmp_name'], $target_dir . $target_file);
 
         $this->set([
             'response' => $target_file,

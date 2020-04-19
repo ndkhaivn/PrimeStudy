@@ -3,26 +3,47 @@ import { useDropzone } from 'react-dropzone';
 import { Button, Intent, ProgressBar } from '@blueprintjs/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { submit } from '../../redux/actions/lesson';
-
+import md5 from 'js-md5';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
-import config from '../../config'
+import config from '../../config';
 
 export default function Submission(props) {
-
   const uploadApi = `${config.apiEndpoint}/files`;
+  const dispatch = useDispatch();
+  const student = useSelector(state => state.user);
 
   // specify upload params and url for your files
-  const getUploadParams = ({ meta }) => { return { url: uploadApi, headers: { accept: 'application/json' } } }
-  
+  const getUploadParams = ({ meta }) => {
+    // generate random file name, api will accept this name
+    const fileName = md5(String(Date.now())) + '.' + meta.name.split('.').pop();
+    return { 
+      url: uploadApi, 
+      headers: { accept: 'application/json' },
+      fields: {
+        "file-name": fileName
+      },
+      meta: { fileName }
+    };
+  };
+
   // called every time a file's `status` changes
-  const handleChangeStatus = ({ meta, file }, status) => { console.log(status, meta, file) }
-  
+  const handleChangeStatus = ({ meta, file }, status) => {
+
+  };
+
   // receives array of files that are done uploading when submit button is clicked
   const handleSubmit = (files, allFiles) => {
-    console.log(files.map(f => f.meta))
-    allFiles.forEach(f => f.remove())
-  }
+    console.log(files.map((f) => f.meta));
+
+    dispatch(submit({
+      lessonId: 1,
+      studentId: student.id,
+      files: files.map(file => file.meta.fileName)
+    }));
+
+    // allFiles.forEach((f) => f.remove());
+  };
 
   return (
     <Dropzone

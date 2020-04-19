@@ -8,6 +8,7 @@ use DateTime;
  * Lessons Controller
  *
  * @property \App\Model\Table\LessonsTable $Lessons
+ * @property \App\Model\Table\StudiesTable $Studies
  *
  * @method \App\Model\Entity\Lesson[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
@@ -39,17 +40,20 @@ class LessonsController extends AppController
 
     public function submit($id) {
 
-        $student_id = $this->request->getData('student_id');
+        $this->loadModel('Studies');
+
+        $student_id = $this->request->getData('student-id');
         $files = $this->request->getData('files');
 
-        $data = $files[0]['tmp_name'];
+        $study = $this->Studies->newEntity();
+        $study->lesson_id = $id;
+        $study->student_id = $student_id;
+        $study->uploads = json_encode($files);
 
-//        foreach ($files as $file) {
-//            array_push($data, $file);
-//        }
+        $this->Studies->save($study);
 
         $this->set([
-            'response' => $data,
+            'response' => $study,
             '_serialize' => 'response'
         ]);
     }
