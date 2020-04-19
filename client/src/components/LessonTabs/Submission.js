@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Button, Intent } from '@blueprintjs/core';
+import { Button, Intent, ProgressBar } from '@blueprintjs/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { submit } from '../../redux/actions/lesson';
 
 const thumbsContainer = {
   display: 'flex',
@@ -36,6 +38,10 @@ const img = {
 
 export default function Submission(props) {
   const [files, setFiles] = useState([]);
+  const dispatch = useDispatch();
+  const student = useSelector(state => state.user);
+  const ui = useSelector(state => state.ui);
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     onDrop: (acceptedFiles) => {
@@ -71,6 +77,14 @@ export default function Submission(props) {
     </div>
   ));
 
+  const handleSubmit = () => {
+    dispatch(submit({
+      lessonId: 1,
+      studentId: student.id,
+      files
+    }));
+  }
+
   useEffect(
     () => () => {
       // Make sure to revoke the data uris to avoid memory leaks
@@ -86,7 +100,10 @@ export default function Submission(props) {
         <Button outlined>Click here to select images...</Button>
       </div>
       <aside style={thumbsContainer}>{thumbs}</aside>
-      <Button disabled={files.length === 0} intent={Intent.PRIMARY}>
+
+      {ui.uploadProgress > 0 && ui.uploadProgress < 100 && <ProgressBar value={ui.uploadProgress}/>}
+
+      <Button disabled={files.length === 0} intent={Intent.PRIMARY} onClick={handleSubmit}>
         Submit
       </Button>
     </section>
