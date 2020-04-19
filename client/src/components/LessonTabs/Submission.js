@@ -7,12 +7,14 @@ import md5 from 'js-md5';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
 import config from '../../config';
+import { useTranslation } from 'react-i18next';
 
 export default function Submission(props) {
   const uploadApi = `${config.apiEndpoint}/files`;
   const dispatch = useDispatch();
   const student = useSelector((state) => state.user);
   const submission = useSelector((state) => state.lesson.submission);
+  const { t } = useTranslation();
 
   // specify upload params and url for your files
   const getUploadParams = ({ meta }) => {
@@ -56,9 +58,9 @@ export default function Submission(props) {
       onChangeStatus={handleChangeStatus}
       onSubmit={handleSubmit}
       accept="image/*"
-      inputContent="Click here to choose images"
-      submitButtonContent="Submit"
-      inputWithFilesContent="Add Files"
+      inputContent={t("Click here to choose images")}
+      submitButtonContent={t("Submit")}
+      inputWithFilesContent={t("Add Files")}
     />
   );
   return <div>{submitMarkup}</div>;

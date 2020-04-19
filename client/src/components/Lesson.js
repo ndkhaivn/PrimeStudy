@@ -6,11 +6,13 @@ import Submission from "./LessonTabs/Submission";
 import useWindowSize from "../hooks/useWindowSize";
 import Requirements from "./LessonTabs/Requirements";
 import Content from './LessonTabs/Content';
+import { useTranslation } from 'react-i18next';
 
 export default function Lesson() {
   const targetRef = useRef();
   const [tabId, setTabId] = useState("requirements");
   const wSize = useWindowSize();
+  const { t } = useTranslation();
   return (
     <div>
       <div className="main-panel">
@@ -38,21 +40,21 @@ export default function Lesson() {
               className="nav-tab"
               panelClassName="nav-panel"
               id="requirements"
-              title="Requirements"
+              title={t("Requirements")}
               panel={<Requirements/>}
             />
             <Tab
               className="nav-tab"
               panelClassName="nav-panel"
               id="content"
-              title="Content"
+              title={t("Content")}
               panel={<Content/>}
             />
             <Tab
               className="nav-tab"
               panelClassName="nav-panel"
               id="submission"
-              title="Submission"
+              title={t("Submission")}
               panel={<Submission />}
             />
             <Tabs.Expander />

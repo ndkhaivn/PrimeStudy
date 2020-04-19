@@ -5,11 +5,13 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLesson } from '../redux/actions/lesson';
+import { useTranslation } from 'react-i18next';
 
 export default function Schedule() {
   const history = useHistory();
   const dispatch = useDispatch();
   const student = useSelector((state) => state.user);
+  const { i18n } = useTranslation();
 
   const queryLessons = (info, successCallback, failureCallback) => {
     axios
@@ -26,9 +28,10 @@ export default function Schedule() {
           res.data.map((lesson) => ({
             id: lesson.id,
             data: lesson,
-            title: `${lesson.subject_id}: ${lesson.title}`,
+            title: `${lesson.subject.name}: ${lesson.title}`,
             start: lesson.date,
             end: lesson.date,
+            color: lesson.subject.color
           }))
         );
       })
@@ -46,6 +49,8 @@ export default function Schedule() {
   return (
     <div>
       <FullCalendar
+        locale={i18n.language}
+        contentHeight='auto'
         defaultView="dayGridWeek"
         plugins={[dayGridPlugin]}
         allDayDefault="true"

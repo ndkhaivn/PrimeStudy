@@ -10,6 +10,7 @@ import {
 } from '@blueprintjs/core';
 import { useState } from 'react';
 import { login } from '../redux/actions/user';
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
 
@@ -17,6 +18,7 @@ export default function Login() {
 
   const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
+  const { t } = useTranslation();
 
   const handleLogin = () => {
     dispatch(login({
@@ -31,16 +33,16 @@ export default function Login() {
         <div className="login-form">
           <h3>Prime Study</h3>
 
-          <FormGroup label="Student ID">
+          <FormGroup label={t("Student ID")}>
             <InputGroup leftIcon="id-number" value={studentId} onChange={(event) => setStudentId(event.target.value)}/>
           </FormGroup>
 
-          <FormGroup label="Password">
+          <FormGroup label={t("Password")}>
             <InputGroup leftIcon="lock" type="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
           </FormGroup>
 
           <Button intent={Intent.PRIMARY} fill={true} onClick={handleLogin}>
-            Sign in
+            {t("Sign in")}
           </Button>
         </div>
       </Card>

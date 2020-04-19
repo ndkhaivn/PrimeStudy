@@ -1,3 +1,14 @@
 {
-  "Schedule": "Lịch học"
+  "Schedule": "Lịch học",
+  "Lesson": "Tiết học",
+  "Logout": "Đăng xuất",
+  "Requirements": "Yêu cầu",
+  "Content": "Nội dung",
+  "Submission": "Nộp bài",
+  "Student ID": "Mã số HS",
+  "Password": "Mật khẩu",
+  "Sign in": "Đăng nhập",
+  "Click here to choose images": "Bấm vào đây để chọn ảnh chụp vở",
+  "Add Files": "Thêm Ảnh",
+  "Submit": "Nộp bài"
 }

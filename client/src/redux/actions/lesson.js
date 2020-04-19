@@ -32,9 +32,7 @@ export const submit = (submission) => (dispatch) => {
     .then(res => {
       dispatch({
         type: SET_SUBMISSION,
-        payload: {
-          files: submission.files
-        }
+        payload: submission.files
       });
     })
     .catch(error => console.log(error))
