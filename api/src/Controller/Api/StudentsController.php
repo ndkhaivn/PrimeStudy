@@ -12,5 +12,24 @@ use App\Controller\Api\AppController;
  */
 class StudentsController extends AppController
 {
+    public function login() {
 
+        $this->loadModel('Students');
+
+        $id = $this->request->getQuery('id');
+        $password = $this->request->getQuery('password');
+
+        $student = $this->Students->get($id, [
+            'contain' => ['StudyClasses']
+        ]);
+
+        if (!is_null($student) && $password === '4bthdqn') {
+            $this->set([
+                'response' => $student,
+                '_serialize' => 'response'
+            ]);
+        } else {
+            return $this->response->withStatus(400);
+        }
+    }
 }

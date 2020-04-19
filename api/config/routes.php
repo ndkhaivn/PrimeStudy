@@ -46,7 +46,9 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::prefix('api', function ($routes) {
-    $routes->resources('Students');
+    $routes->resources('Students', [
+        'map' => ['login' => ['action' => 'login', 'method' => 'GET']]
+    ]);
     $routes->resources('Lessons', [
         'map' => ['schedule' => ['action' => 'schedule', 'method' => 'GET']]
     ]);
