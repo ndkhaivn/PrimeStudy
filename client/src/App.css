@@ -71,6 +71,21 @@
   text-align: center;
 }
 
+/* Full calendar  */
+.fc-event-time, .fc-event-title {
+  padding: 0 1px;
+  white-space: nowrap;
+}
+
+.fc-content {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.fc-title {
+  white-space: normal;
+}
+
 /* ==================== width 900 ==================== */
 
 @media (max-width: 991px) {
