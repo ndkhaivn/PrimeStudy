@@ -9,8 +9,9 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import MainPanel from './components/MainPanel';
 import { setUser } from './redux/actions/user';
+import config from './config';
 
-axios.defaults.baseURL = 'http://localhost:8765/api';
+axios.defaults.baseURL = config.apiEndpoint;
 axios.defaults.headers.common['Accept'] = 'application/json';
 
 const studentData = localStorage.StudentData;

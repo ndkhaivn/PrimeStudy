@@ -4,108 +4,33 @@ import { Button, Intent, ProgressBar } from '@blueprintjs/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { submit } from '../../redux/actions/lesson';
 
-const thumbsContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  marginTop: 16,
-};
-
-const thumb = {
-  display: 'inline-flex',
-  borderRadius: 2,
-  border: '1px solid #eaeaea',
-  marginBottom: 8,
-  marginRight: 8,
-  width: 100,
-  height: 100,
-  padding: 4,
-  boxSizing: 'border-box',
-  position: 'relative',
-};
-
-const thumbInner = {
-  display: 'flex',
-  minWidth: 0,
-  overflow: 'hidden',
-};
-
-const img = {
-  display: 'block',
-  width: 'auto',
-  height: '100%',
-};
+import 'react-dropzone-uploader/dist/styles.css';
+import Dropzone from 'react-dropzone-uploader';
+import config from '../../config'
 
 export default function Submission(props) {
-  const [files, setFiles] = useState([]);
-  const dispatch = useDispatch();
-  const student = useSelector(state => state.user);
-  const ui = useSelector(state => state.ui);
 
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/*',
-    onDrop: (acceptedFiles) => {
-      setFiles(
-        files.concat(
-          acceptedFiles
-            .filter(file => // filter files that have been uploaded before
-              !files.map(file2 => file2.name).includes(file.name)
-            ) // then attach preview
-            .map((file) => 
-             Object.assign(file, {
-              preview: URL.createObjectURL(file),
-            })
-          )
-        )
-      );
-    },
-  });
+  const uploadApi = `${config.apiEndpoint}/files`;
 
-  const thumbs = files.map((file) => (
-    <div style={thumb} key={file.name}>
-      <Button
-        className="corner-button"
-        icon="cross"
-        intent={Intent.DANGER}
-        onClick={() => {
-          setFiles(files.filter((curFile) => curFile.name !== file.name));
-        }}
-      />
-      <div style={thumbInner}>
-        <img src={file.preview} style={img} />
-      </div>
-    </div>
-  ));
-
-  const handleSubmit = () => {
-    dispatch(submit({
-      lessonId: 1,
-      studentId: student.id,
-      files
-    }));
+  // specify upload params and url for your files
+  const getUploadParams = ({ meta }) => { return { url: uploadApi, headers: { accept: 'application/json' } } }
+  
+  // called every time a file's `status` changes
+  const handleChangeStatus = ({ meta, file }, status) => { console.log(status, meta, file) }
+  
+  // receives array of files that are done uploading when submit button is clicked
+  const handleSubmit = (files, allFiles) => {
+    console.log(files.map(f => f.meta))
+    allFiles.forEach(f => f.remove())
   }
 
-  useEffect(
-    () => () => {
-      // Make sure to revoke the data uris to avoid memory leaks
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    },
-    [files]
-  );
-
   return (
-    <section className="container text-center">
-      <div {...getRootProps({ className: 'dropzone' })}>
-        <input {...getInputProps()} />
-        <Button outlined>Click here to select images...</Button>
-      </div>
-      <aside style={thumbsContainer}>{thumbs}</aside>
-
-      {ui.uploadProgress > 0 && ui.uploadProgress < 100 && <ProgressBar value={ui.uploadProgress}/>}
-
-      <Button disabled={files.length === 0} intent={Intent.PRIMARY} onClick={handleSubmit}>
-        Submit
-      </Button>
-    </section>
+    <Dropzone
+      getUploadParams={getUploadParams}
+      onChangeStatus={handleChangeStatus}
+      onSubmit={handleSubmit}
+      accept="image/*,audio/*,video/*"
+      inputContent="Submit images here"
+    />
   );
 }

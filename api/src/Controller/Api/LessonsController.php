@@ -36,4 +36,21 @@ class LessonsController extends AppController
             '_serialize' => 'response'
         ]);
     }
+
+    public function submit($id) {
+
+        $student_id = $this->request->getData('student_id');
+        $files = $this->request->getData('files');
+
+        $data = $files[0]['tmp_name'];
+
+//        foreach ($files as $file) {
+//            array_push($data, $file);
+//        }
+
+        $this->set([
+            'response' => $data,
+            '_serialize' => 'response'
+        ]);
+    }
 }

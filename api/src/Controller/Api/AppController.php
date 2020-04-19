@@ -2,24 +2,16 @@
 namespace App\Controller\Api;
 
 use Cake\Controller\Controller;
+use Cake\Event\Event;
 
 
 class AppController extends Controller
 {
     use \Crud\Controller\ControllerTrait;
 
-//    public $components = [
-//        'RequestHandler',
-//        'Crud.Crud' => [
-//
-//        ]
-//    ];
-
-    public function initialize()
-    {
-        parent::initialize();
-        $this->loadComponent('RequestHandler');
-        $this->loadComponent('Crud.Crud', [
+    public $components = [
+        'RequestHandler',
+        'Crud.Crud' => [
             'actions' => [
                 'Crud.Index',
                 'Crud.View',
@@ -32,7 +24,6 @@ class AppController extends Controller
                 'Crud.ApiPagination',
                 'Crud.ApiQueryLog'
             ]
-        ]);
-    }
-
+        ]
+    ];
 }

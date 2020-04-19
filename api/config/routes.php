@@ -50,13 +50,17 @@ Router::prefix('api', function ($routes) {
         'map' => ['login' => ['action' => 'login', 'method' => 'GET']]
     ]);
     $routes->resources('Lessons', [
-        'map' => ['schedule' => ['action' => 'schedule', 'method' => 'GET']]
+        'map' => [
+            'schedule' => ['action' => 'schedule', 'method' => 'GET'],
+            'submit' => ['action' => 'submit', 'method' => 'POST', 'path' => '/:id/submit']
+        ]
     ]);
     $routes->resources('Studies');
     $routes->resources('StudyClasses');
     $routes->resources('Subjects');
     $routes->resources('Teachers');
     $routes->resources('Users');
+    $routes->resources('Files');
 });
 
 Router::scope('/', function (RouteBuilder $routes) {
