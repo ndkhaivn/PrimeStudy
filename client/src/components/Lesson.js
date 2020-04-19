@@ -20,9 +20,9 @@ export default function Lesson() {
           <iframe
             className="video-player"
             // src="https://www.youtube.com/embed/FlJW9R9DFaQ"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen="true"
+            allowFullScreen={true}
           ></iframe>
 
           <Tabs
