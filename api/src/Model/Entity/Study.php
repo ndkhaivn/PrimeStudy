@@ -11,6 +11,8 @@ use Cake\ORM\Entity;
  * @property int $lesson_id
  * @property int $student_id
  * @property bool $checked
+ * @property \Cake\I18n\FrozenTime $submitted
+ * @property string|null $feedback
  *
  * @property \App\Model\Entity\Lesson $lesson
  * @property \App\Model\Entity\Student $student
@@ -31,6 +33,8 @@ class Study extends Entity
         'lesson_id' => true,
         'student_id' => true,
         'checked' => true,
+        'submitted' => true,
+        'feedback' => true,
         'lesson' => true,
         'student' => true,
     ];

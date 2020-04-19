@@ -96,6 +96,11 @@
   padding: 20px;
 }
 
+.img-review {
+  width: 100%;
+  border: 1px solid;
+}
+
 /* ==================== width 900 ==================== */
 
 @media (max-width: 991px) {

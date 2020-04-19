@@ -21,6 +21,7 @@ class LessonsController extends AppController
         $start = $this->request->getQuery('start');
         $end = $this->request->getQuery('end');
         $class_id = $this->request->getQuery('class-id');
+        $student_id = $this->request->getQuery('student-id');
         $startDate = new DateTime($start);
         $endDate = new DateTime($end);
 
@@ -30,7 +31,13 @@ class LessonsController extends AppController
                 'date <' => $endDate,
                 'study_class_id' => $class_id
             ])
-            ->contain(['Subjects']);
+            ->contain(['Subjects',
+                    'Studies' => [
+                        'conditions' => [
+                            'Studies.student_id' => $student_id
+                        ]
+                    ]
+                ]);
 
         $this->set([
             'response' => $lessons,

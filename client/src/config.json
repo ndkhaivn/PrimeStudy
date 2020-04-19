@@ -1,3 +1,4 @@
 {
-  "apiEndpoint": "http://localhost:8765/api"
+  "apiEndpoint": "http://localhost:8765/api",
+  "uploadDir": "http://localhost:8765/upload"
 }

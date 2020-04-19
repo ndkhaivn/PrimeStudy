@@ -67,6 +67,14 @@ class StudiesTable extends Table
             ->boolean('checked')
             ->notEmptyString('checked');
 
+        $validator
+            ->dateTime('submitted')
+            ->notEmptyDateTime('submitted');
+
+        $validator
+            ->scalar('feedback')
+            ->allowEmptyString('feedback');
+
         return $validator;
     }
 

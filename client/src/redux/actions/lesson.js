@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_LESSON } from '../actionTypes';
+import { SET_LESSON, SET_SUBMISSION } from '../actionTypes';
 
 export const setLesson = (lesson) => (dispatch) => {
 
@@ -30,7 +30,12 @@ export const submit = (submission) => (dispatch) => {
 
   axios.post(`/lessons/${submission.lessonId}/submit`, { files: submission.files, "student-id": submission.studentId })
     .then(res => {
-      
+      dispatch({
+        type: SET_SUBMISSION,
+        payload: {
+          files: submission.files
+        }
+      });
     })
     .catch(error => console.log(error))
 }
