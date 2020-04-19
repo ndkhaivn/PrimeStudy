@@ -6,8 +6,8 @@ export default function Content() {
   const content = useSelector(state => state.lesson.content);
 
   return (
-    <div>
-      {content}  
+    <div dangerouslySetInnerHTML={{__html: content}}>
+      
     </div>
   )
 }

@@ -6,8 +6,8 @@ export default function Requirements() {
   const requirements = useSelector(state => state.lesson.requirements);
 
   return (
-    <div>
-      {requirements}
+    <div dangerouslySetInnerHTML={{__html: requirements}}>
+      
     </div>
   )
 }
