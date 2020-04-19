@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property int $subject_id
  * @property string $title
  * @property string|null $youtube_src
- * @property string|null $announcements
+ * @property string|null $content
  * @property string|null $requirements
  * @property \Cake\I18n\FrozenDate $date
  * @property \Cake\I18n\FrozenTime|null $submission_due
@@ -35,7 +35,7 @@ class Lesson extends Entity
         'subject_id' => true,
         'title' => true,
         'youtube_src' => true,
-        'announcements' => true,
+        'content' => true,
         'requirements' => true,
         'date' => true,
         'submission_due' => true,

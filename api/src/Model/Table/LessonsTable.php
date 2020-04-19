@@ -75,8 +75,8 @@ class LessonsTable extends Table
             ->allowEmptyString('youtube_src');
 
         $validator
-            ->scalar('announcements')
-            ->allowEmptyString('announcements');
+            ->scalar('content')
+            ->allowEmptyString('content');
 
         $validator
             ->scalar('requirements')
