@@ -13,6 +13,7 @@ export default function Submission(props) {
   const uploadApi = `${config.apiEndpoint}/files`;
   const dispatch = useDispatch();
   const student = useSelector((state) => state.user);
+  const lesson = useSelector(state => state.lesson);
   const submission = useSelector((state) => state.lesson.submission);
   const { t } = useTranslation();
 
@@ -39,7 +40,7 @@ export default function Submission(props) {
 
     dispatch(
       submit({
-        lessonId: 1,
+        lessonId: lesson.id,
         studentId: student.id,
         files: files.map((file) => file.meta.fileName),
       })
