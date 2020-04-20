@@ -2,3 +2,5 @@
 api/config/app.php
 
 api/webroot/upload/
+
+client/src/config.json
