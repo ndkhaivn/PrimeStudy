@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
-import ReactPlayer from "react-player";
 import { Tab, Tabs } from "@blueprintjs/core";
 import Submission from "./LessonTabs/Submission";
-import useWindowSize from "../hooks/useWindowSize";
 import Requirements from "./LessonTabs/Requirements";
 import Content from './LessonTabs/Content';
 import { useTranslation } from 'react-i18next';
@@ -13,13 +11,12 @@ import Intro from './LessonTabs/Intro';
 export default function Lesson() {
   const targetRef = useRef();
   const [tabId, setTabId] = useState("requirements");
-  const wSize = useWindowSize();
   const { t } = useTranslation();
   const lesson = useSelector(state => state.lesson);
   return (
     <div>
       <div className="main-panel">
-        {wSize.width > 991 ? <Sidebar> <Intro/> </Sidebar> : null}
+        <Sidebar> <Intro/> </Sidebar>
 
         <div className="lesson-content">
           <iframe

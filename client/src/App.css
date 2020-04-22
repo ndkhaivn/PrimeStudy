@@ -104,6 +104,11 @@
 /* ==================== width 900 ==================== */
 
 @media (max-width: 991px) {
+
+  .sidebar {
+    display: none
+  }
+
   .lesson-content {
     width: 100%;
   }
