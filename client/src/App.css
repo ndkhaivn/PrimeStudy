@@ -7,7 +7,8 @@
 @import '~@fullcalendar/daygrid/main.css';
 
 .sidebar {
-  position: absolute;
+  padding-top: 50px;
+  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
@@ -34,6 +35,10 @@
   height: 100%;
 }
 
+.nav-bar {
+  position: fixed;
+}
+
 .nav-tabs {
   margin-left: 10px;
   margin-right: 10px;
@@ -57,7 +62,7 @@
   right: 0px;
 }
 
-.lesson-content {
+.main-content {
   width: calc(100% - 400px);
 }
 
@@ -109,7 +114,7 @@
     display: none
   }
 
-  .lesson-content {
+  .main-content {
     width: 100%;
   }
 

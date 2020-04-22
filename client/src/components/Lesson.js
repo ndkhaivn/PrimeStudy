@@ -18,7 +18,7 @@ export default function Lesson() {
       <div className="main-panel">
         <Sidebar> <Intro/> </Sidebar>
 
-        <div className="lesson-content">
+        <div className="main-content">
           <iframe
             className="video-player"
             src={"https://www.youtube.com/embed/" + lesson.youtube_src}

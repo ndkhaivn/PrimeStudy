@@ -20,8 +20,8 @@ export default function Navigation() {
   const dispatch = useDispatch();
 
   return (
-    <Navbar className={Classes.DARK}>
-      <NavbarGroup className="nav-bar">
+    <Navbar className={`${Classes.DARK} nav-bar`}>
+      <NavbarGroup>
         <NavbarHeading>Prime Study</NavbarHeading>
         <NavbarDivider />
         <Link to="/schedule">
