@@ -8,6 +8,7 @@ import Requirements from "./LessonTabs/Requirements";
 import Content from './LessonTabs/Content';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import Intro from './LessonTabs/Intro';
 
 export default function Lesson() {
   const targetRef = useRef();
@@ -18,7 +19,7 @@ export default function Lesson() {
   return (
     <div>
       <div className="main-panel">
-        {wSize.width > 991 ? <Sidebar /> : null}
+        {wSize.width > 991 ? <Sidebar> <Intro/> </Sidebar> : null}
 
         <div className="lesson-content">
           <iframe
