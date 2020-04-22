@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button, Intent, ProgressBar } from '@blueprintjs/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { submit } from '../../redux/actions/lesson';
+import { submit, deleteSubmission } from '../../redux/actions/lesson';
 import md5 from 'js-md5';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
@@ -12,9 +12,10 @@ import { useTranslation } from 'react-i18next';
 export default function Submission(props) {
   const uploadApi = `${config.apiEndpoint}/files`;
   const dispatch = useDispatch();
-  const student = useSelector((state) => state.user);
+  const student = useSelector((state) => state.user.student);
   const lesson = useSelector(state => state.lesson);
   const submission = useSelector((state) => state.lesson.submission);
+  const feedback = useSelector((state) => state.lesson.feedback);
   const { t } = useTranslation();
 
   // specify upload params and url for your files
@@ -36,7 +37,6 @@ export default function Submission(props) {
 
   // receives array of files that are done uploading when submit button is clicked
   const handleSubmit = (files, allFiles) => {
-    console.log(files.map((f) => f.meta));
 
     dispatch(
       submit({
@@ -49,11 +49,17 @@ export default function Submission(props) {
     allFiles.forEach((f) => f.remove());
   };
 
-  const submitMarkup = submission && submission.length > 0 ? (
+  const handleDeleteSubmission = () => {
+    const studyId = lesson.studies[0].id;
+    dispatch(deleteSubmission(studyId));
+  }
+
+  const submissionMarkup = submission && submission.length > 0 ? (
+    
     submission.map((file) => (
       <img className="img-review" src={config.uploadDir + '/' + file} />
     ))
-  ) : (
+  ) : 
     <Dropzone
       getUploadParams={getUploadParams}
       onChangeStatus={handleChangeStatus}
@@ -62,12 +68,24 @@ export default function Submission(props) {
       inputContent={t("Click here to choose images")}
       submitButtonContent={t("Submit")}
       inputWithFilesContent={t("Add Files")}
-    />
-  );
+    />;
+
+  const feedbackMarkup = feedback && feedback.length > 0 ? (
+    feedback.map(file => (
+      <div key={file}>
+        <audio src={config.uploadDir + '/' + file} controls />
+      </div>
+    ))
+  ) : null;
+  
   return (
     <div>
       <h3>{t("Full name")}: {student.last_name + ' ' + student.first_name}</h3>
-      {submitMarkup}
+
+      { feedbackMarkup && <h3> {t("Feedback")} </h3> } { feedbackMarkup }
+
+      <br/>
+      { submissionMarkup }
     </div>
   );
 }

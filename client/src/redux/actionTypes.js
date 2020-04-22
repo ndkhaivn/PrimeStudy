@@ -2,3 +2,7 @@ export const SET_LESSON = 'SET_LESSON';
 export const SET_USER = 'SET_USER';
 
 export const SET_SUBMISSION = 'SET_SUBMISSION';
+
+export const SET_SUBMISSIONS = 'SET_SUBMISSIONS';
+
+export const SET_FEEDBACK_SUBMISSION = 'SET_FEEDBACK_SUBMISSION';

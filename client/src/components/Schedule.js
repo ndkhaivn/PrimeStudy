@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 export default function Schedule() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const student = useSelector((state) => state.user);
+  const student = useSelector((state) => state.user.student);
   const { i18n } = useTranslation();
 
   const queryLessons = (info, successCallback, failureCallback) => {
@@ -37,7 +37,7 @@ export default function Schedule() {
       })
       .catch((error) => {
         console.log(error);
-        failureCallback();
+        failureCallback("Cannot retrieve this week schedule");
       });
   };
 

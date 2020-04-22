@@ -13,7 +13,7 @@ export default function Intro() {
   return (
     <div className="text-center">
       <h3>{toDateHeader(date, i18n.language)}</h3>
-  <h2><u>{subject && subject.name}</u></h2>
+      <h2><u>{subject && subject.name}</u></h2>
       <h2 style={{textTransform: "uppercase"}}>
         {title}
       </h2>

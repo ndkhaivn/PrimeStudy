@@ -14,6 +14,9 @@ class FilesController extends AppController
 
         $target_dir = WWW_ROOT.'upload/';
         $target_file = $this->request->getData('file-name');
+        if (is_null($target_file)) {
+            $target_file = md5(time() + $file['size']) . '.' . $extension;
+        }
 
         move_uploaded_file($file['tmp_name'], $target_dir . $target_file);
 

@@ -8,7 +8,8 @@ const lessonReducers = function(state = initialState, action) {
       if (action.payload.studies.length > 0) {
         return {
           ...action.payload,
-          submission: JSON.parse(action.payload.studies[0].uploads)
+          submission: JSON.parse(action.payload.studies[0].uploads),
+          feedback: JSON.parse(action.payload.studies[0].feedback)
         }
       }
       return {

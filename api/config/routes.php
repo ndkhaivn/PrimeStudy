@@ -53,7 +53,11 @@ Router::prefix('api', function ($routes) {
             'submit' => ['action' => 'submit', 'method' => 'POST', 'path' => '/:id/submit']
         ]
     ]);
-    $routes->resources('Studies');
+    $routes->resources('Studies', [
+        'map' => [
+            'feedback' => ['action' => 'feedback', 'method' => 'POST', 'path' => '/:id/feedback']
+        ]
+    ]);
     $routes->resources('StudyClasses');
     $routes->resources('Subjects');
     $routes->resources('Teachers');
