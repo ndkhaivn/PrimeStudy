@@ -9,10 +9,10 @@ export const setUser = (user) => (dispatch) => {
 }
 
 export const login = (loginDetails) => (dispatch) => {
-  axios.get('/students/login', {params: loginDetails})
+  axios.get('/users/login', {params: loginDetails})
     .then(res => {
 
-      localStorage.setItem('StudentData', JSON.stringify(res.data));
+      localStorage.setItem('UserData', JSON.stringify(res.data));
 
       dispatch({
         type: SET_USER,
@@ -23,7 +23,7 @@ export const login = (loginDetails) => (dispatch) => {
 }
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem('StudentData');
+  localStorage.removeItem('UserData');
   dispatch({
     type: SET_USER,
     payload: {

@@ -1,7 +1,9 @@
 import { SET_USER } from '../actionTypes';
 
 const initialState = {
-  type: "UNAUTHENTICATED"
+  type: "UNAUTHENTICATED",
+  student: {},
+  teacher: {}
 };
 
 const userReducers = function(state = initialState, action) {

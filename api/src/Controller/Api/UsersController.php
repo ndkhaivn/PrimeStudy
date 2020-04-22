@@ -38,7 +38,7 @@ class UsersController extends AppController
                     '_serialize' => 'response'
                 ]);
             }
-        } else if ($password === 'anhphuong123') {
+        } else if ($password === 'anhphuong167') {
             $teacher = $this->Teachers->get($id);
             if (!is_null($teacher)) {
                 $teacher = [

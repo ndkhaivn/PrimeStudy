@@ -15,9 +15,9 @@ import i18n from './i18n';
 axios.defaults.baseURL = config.apiEndpoint;
 axios.defaults.headers.common['Accept'] = 'application/json';
 
-const studentData = localStorage.StudentData;
-if (studentData) {
-  store.dispatch(setUser(JSON.parse(studentData)));
+const userData = localStorage.UserData;
+if (userData) {
+  store.dispatch(setUser(JSON.parse(userData)));
 }
 
 function App() {
