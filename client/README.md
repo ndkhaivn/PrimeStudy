@@ -5,7 +5,7 @@
 - Node > 12
 - npm > 6
 
-## Installing Dependicies
+## Installing Dependencies
 
 ```
 npm install 
