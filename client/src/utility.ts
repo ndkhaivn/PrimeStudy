@@ -1,4 +1,7 @@
-export const toDateHeader = function(date, lang) {
+// Immutable empty obj to use as default value in hooks
+export const emptyObj = Object.freeze({});
+
+export function toDateHeader(date, lang) {
 
   if (lang === 'en') {
     return date.toDateString();

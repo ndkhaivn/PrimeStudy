@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ExtractCssPlugin = require("mini-css-extract-plugin");
 
@@ -113,6 +112,18 @@ module.exports = {
     ]).concat(dev ? [] : [
         new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })
     ]),
+    optimization: {
+		minimize: !dev,
+		minimizer: [
+            new TerserPlugin({
+                cache: true,
+                parallel: true,
+            })
+        ],
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
     devServer: {
         contentBase: path.join(__dirname, './build'),
         compress: true,
