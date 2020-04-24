@@ -1,8 +1,8 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-// import reducers from "./reducers";
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+// import reducers from './reducers';
 // TODO: Remove
-const reducers = () => {};
+const reducers = () => void 0;
 
 const localStorage = typeof window === 'object' && window.localStorage;
 const initialState = JSON.parse(localStorage && localStorage.getItem('UserData') || '{}');
@@ -15,7 +15,7 @@ const composeEnhancers =
 const enhancer = composeEnhancers(applyMiddleware(
     thunk,
 ));
-    
+
 const store = createStore(reducers, initialState, enhancer);
 
 if (localStorage)

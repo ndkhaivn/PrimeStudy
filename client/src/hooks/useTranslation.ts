@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from 'preact/hooks'
-import axios from 'axios';
 
 import config from '../config';
 import { emptyObj } from '../utility';
@@ -12,12 +11,11 @@ interface IDict
 export function useTranslation()
 {
     const [ lang, setLang ] = useState(config.i18n.defaultLang);
-    
+
     const languageSetter = useCallback((newLang: string) => {
-        if (config.i18n.langs.includes(newLang) && lang !== newLang)
-        setLang(newLang);
+        if (config.i18n.langs.includes(newLang) && lang !== newLang) setLang(newLang);
     }, [ lang ]);
-    
+
     const [ dict, setDict ] = useState<IDict>(emptyObj);
 
     useEffect(() => {
@@ -27,7 +25,7 @@ export function useTranslation()
     }, [ lang ]);
 
     const translate = useCallback((str: string): string => {
-        return dict[str] || str;   
+        return dict[str] || str;
     }, [ lang ]);
 
     return {
