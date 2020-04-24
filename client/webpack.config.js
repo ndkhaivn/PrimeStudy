@@ -1,3 +1,4 @@
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -5,11 +6,14 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const ExtractCssPlugin = require("extract-css-chunks-webpack-plugin");
+const ExtractCssPlugin = require("mini-css-extract-plugin");
+
+fs.rmdirSync(path.join(__dirname, './build'), { recursive: true });
 
 const dev = process.env.NODE_ENV === 'development';
 
 module.exports = {
+    devtool: dev && 'eval-cheap-module-source-map',
     mode: dev ? 'development' : 'production',
     entry: {
         main: path.join(__dirname, './src/index.tsx')
@@ -72,6 +76,13 @@ module.exports = {
                     limit: 8192,
                     fallback: 'file-loader',
                 },
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                loader: 'file-loader',
+                options: {
+                    name: 'assets/[name][contenthash:8].[ext]',
+                },
             }
         ],
     },
@@ -94,30 +105,20 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             {
-                from: './src/static/**/*',
+                context: './src/static/',
+                from: '**/*',
                 to: './'
             },
         ]),
-        new CleanWebpackPlugin({
-            cleanAfterEveryBuildPatterns: [
-                '!favicon.ico',
-                '!robots.txt',
-                '!asset/**/*'
-            ]
-        })
     ]).concat(dev ? [] : [
         new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })
     ]),
-    optimization: {
-        minimize: !dev,
-        minimizer: [
-            new TerserPlugin({
-                cache: true,
-                parallel: true,
-            })
-        ],
-        splitChunks: {
-            chunks: 'all'
+    devServer: {
+        contentBase: path.join(__dirname, './build'),
+        compress: true,
+        port: 9000,
+        historyApiFallback: {
+            index: 'index.html'
         }
-    },
+    }
 };

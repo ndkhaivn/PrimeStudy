@@ -2,7 +2,7 @@
 
 ## Requirement:
 
-- Node > 8
+- Node > 12
 - npm > 6
 
 ## Installing Dependicies
