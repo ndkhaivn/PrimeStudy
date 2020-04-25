@@ -10,6 +10,7 @@ interface IDict
 
 export function useTranslation()
 {
+    // TODO: Fix this, this should be global
     const [ lang, setLang ] = useState(config.i18n.defaultLang);
 
     const languageSetter = useCallback((newLang: string) => {
@@ -25,8 +26,9 @@ export function useTranslation()
     }, [ lang ]);
 
     const translate = useCallback((str: string): string => {
+        console.log(dict[str]);
         return dict[str] || str;
-    }, [ lang ]);
+    }, [ dict ]);
 
     return {
         setLang: languageSetter,

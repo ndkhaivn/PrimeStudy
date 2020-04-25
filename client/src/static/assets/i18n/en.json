@@ -1,28 +1,7 @@
 {
-  "Schedule": "Schedule",
-  "Lesson": "Lesson",
-  "Logout": "Logout",
-  "Requirements": "Requirements",
-  "Content": "Content",
-  "Submission": "Submission",
-  "Student ID": "Student ID",
-  "Password": "Password",
-  "Sign in": "Sign in",
-  "Click here to choose images": "Click here to choose images",
-  "Add Files": "Add Files",
-  "Submit": "Submit",
-  "Full name": "Full name",
-  "ID": "ID",
-  "Last Name": "Last Name",
-  "First Name": "First Name",
-  "Monday": "Monday",
-  "Tuesday": "Tuesday",
-  "Wednesday": "Wednesday",
-  "Thursday": "Thursday",
-  "Friday": "Friday",
-  "Class List": "Class List",
-  "Done": "Done",
-  "Feedback": "Feedback",
-  "Delete Submission": "Delete Submission"
-
+  "text.home_panel": "Home Panel",
+  "text.navigation": "Navigation",
+  "text.home": "Home",
+  "text.student": "Student",
+  "text.teacher": "Teacher"
 }

@@ -1,13 +1,17 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const {
+    BundleAnalyzerPlugin
+} = require('webpack-bundle-analyzer');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ExtractCssPlugin = require("mini-css-extract-plugin");
 
-fs.rmdirSync(path.join(__dirname, './build'), { recursive: true });
+fs.rmdirSync(path.join(__dirname, './build'), {
+    recursive: true
+});
 
 const dev = process.env.NODE_ENV === 'development';
 
@@ -33,16 +37,14 @@ module.exports = {
         publicPath: '/',
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.(t|j)sx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             },
             {
                 test: /\.css$/,
-                use: [
-                    {
+                use: [{
                         loader: ExtractCssPlugin.loader,
                     },
                     {
@@ -68,7 +70,7 @@ module.exports = {
                 ],
             },
             {
-                // Note: We inline the file that is smaller than 8kB 
+                // Note: We inline the file that is smaller than 8kB
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loader: 'url-loader',
                 options: {
@@ -102,19 +104,20 @@ module.exports = {
                 removeComments: true,
             },
         }),
-        new CopyWebpackPlugin([
-            {
-                context: './src/static/',
-                from: '**/*',
-                to: './'
-            },
-        ]),
+        new CopyWebpackPlugin([{
+            context: './src/static/',
+            from: '**/*',
+            to: './'
+        }, ]),
     ]).concat(dev ? [] : [
-        new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static',
+            openAnalyzer: false
+        })
     ]),
     optimization: {
-		minimize: !dev,
-		minimizer: [
+        minimize: !dev,
+        minimizer: [
             new TerserPlugin({
                 cache: true,
                 parallel: true,
@@ -127,6 +130,7 @@ module.exports = {
     devServer: {
         port: 9000,
         compress: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        contentBase: path.join(__dirname, './src/static/'),
     }
 };
