@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import MainPanel from './components/MainPanel';
 import Navigation from './components/Navigation';
 import store from './redux/store';
-import config from './config';
 import './App.css';
 
 

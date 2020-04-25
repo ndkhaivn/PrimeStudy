@@ -6,6 +6,8 @@
 		"jsx": "react",
 		"jsxFactory": "h",
 		"strict": true,
+		"moduleResolution": "node",
+		"importHelpers": true,
 		"lib": [ "esnext", "dom", "dom.iterable" ],
 		"skipLibCheck": true,
 		"baseUrl": "./",
