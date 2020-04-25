@@ -1,15 +1,15 @@
 namespace PS
 {
-	type PersonID = string;
-	type ClassID = string;
-	type TimeTableID = string;
+    type PersonID = string;
+    type ClassID = string;
+    type TimeTableID = string;
 
     interface Person
     {
-		id: PersonID;
+        id: PersonID;
         name: string;
-		full_name: string;
-		classes: ClassID[];
+        full_name: string;
+        classes: ClassID[];
     }
 
     interface Student extends Person
