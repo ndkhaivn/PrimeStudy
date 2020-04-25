@@ -1,17 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const {
-    BundleAnalyzerPlugin
-} = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ExtractCssPlugin = require("mini-css-extract-plugin");
 
-fs.rmdirSync(path.join(__dirname, './build'), {
-    recursive: true
-});
+const buildDir = path.join(__dirname, './build');
+
+if (fs.existsSync(buildDir))
+{
+    fs.rmdirSync(buildDir, { recursive: true });
+}
 
 const dev = process.env.NODE_ENV === 'development';
 
@@ -33,7 +34,7 @@ module.exports = {
     },
     output: {
         filename: 'assets/js/[name].[contenthash:8].js',
-        path: path.join(__dirname, './build'),
+        path: buildDir,
         publicPath: '/',
     },
     module: {
