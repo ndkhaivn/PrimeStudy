@@ -1,8 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-// import reducers from './reducers';
-// TODO: Remove
-const reducers = () => void 0;
+import reducers from './reducers';
 
 const localStorage = typeof window === 'object' && window.localStorage;
 const initialState = JSON.parse(localStorage && localStorage.getItem('UserData') || '{}');
@@ -24,5 +22,6 @@ if (localStorage)
         localStorage.setItem('UserData', JSON.stringify(store.getState()))
     });
 }
+
 
 export default store;
