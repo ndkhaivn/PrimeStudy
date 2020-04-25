@@ -106,7 +106,7 @@ module.exports = {
             },
         }),
         new CopyWebpackPlugin([{
-            context: './src/static/',
+            context: './static/',
             from: '**/*',
             to: './'
         }, ]),
