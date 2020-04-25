@@ -28,8 +28,11 @@ export function useTranslation()
     const [ dict, setDict ] = useState<IDict>(emptyObj);
 
     useEffect(() => {
-        // Note: using void [value] to make function return void instead of something random
-        if (CACHE[lang]) return void setDict(CACHE[lang]);
+        if (CACHE[lang])
+        {
+            setDict(CACHE[lang]);
+            return;
+        }
 
         fetch(`${config.i18n.dir}/${lang}.json`)
             .then(r => r.json())
