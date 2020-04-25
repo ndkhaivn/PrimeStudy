@@ -1,17 +1,13 @@
   {
 	"compilerOptions": {
-		"experimentalDecorators": false,
 		"target": "es5",
 		"downlevelIteration": true,
 		"module": "esnext",
 		"jsx": "react",
 		"jsxFactory": "h",
 		"strict": true,
-		"moduleResolution": "node",
-		"importHelpers": true,
 		"lib": [ "esnext", "dom", "dom.iterable" ],
 		"skipLibCheck": true,
-		"types": [ "node" ],
 		"baseUrl": "./",
 	},
 	"include": [
