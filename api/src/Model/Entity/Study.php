@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property bool $checked
  * @property \Cake\I18n\FrozenTime $submitted
  * @property string|null $feedback
+ * @property string|null $feedback_text
  *
  * @property \App\Model\Entity\Lesson $lesson
  * @property \App\Model\Entity\Student $student
@@ -35,6 +36,7 @@ class Study extends Entity
         'checked' => true,
         'submitted' => true,
         'feedback' => true,
+        'feedback_text' => true,
         'lesson' => true,
         'student' => true,
     ];

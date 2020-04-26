@@ -75,6 +75,10 @@ class StudiesTable extends Table
             ->scalar('feedback')
             ->allowEmptyString('feedback');
 
+        $validator
+            ->scalar('feedback_text')
+            ->allowEmptyString('feedback_text');
+
         return $validator;
     }
 

@@ -21,6 +21,7 @@ class StudiesController extends AppController
 
         $study = $this->Studies->get($id);
         $study->feedback = json_encode($audio_files);
+        $study->feedback_text = $this->request->getData('feedback_text');
         $study->checked = true;
 
         $this->Studies->save($study);
