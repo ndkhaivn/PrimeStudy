@@ -1,4 +1,4 @@
 {
-  "apiEndpoint": "http://localhost:8765/api",
-  "uploadDir": "http://localhost:8765/upload"
+  "apiEndpoint": "https://www.primestudy.online/api/api",
+  "uploadDir": "https://www.primestudy.online/api/upload"
 }

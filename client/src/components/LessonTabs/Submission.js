@@ -14,8 +14,7 @@ export default function Submission(props) {
   const dispatch = useDispatch();
   const student = useSelector((state) => state.user.student);
   const lesson = useSelector(state => state.lesson);
-  const submission = useSelector((state) => state.lesson.submission);
-  const feedback = useSelector((state) => state.lesson.feedback);
+  const { submission, feedback, feedback_text } = lesson;
   const { t } = useTranslation();
 
   // specify upload params and url for your files
@@ -55,11 +54,11 @@ export default function Submission(props) {
   }
 
   const submissionMarkup = submission && submission.length > 0 ? (
-    
+
     submission.map((file) => (
       <img className="img-review" src={config.uploadDir + '/' + file} />
     ))
-  ) : 
+  ) :
     <Dropzone
       getUploadParams={getUploadParams}
       onChangeStatus={handleChangeStatus}
@@ -70,19 +69,24 @@ export default function Submission(props) {
       inputWithFilesContent={t("Add Files")}
     />;
 
-  const feedbackMarkup = feedback && feedback.length > 0 ? (
-    feedback.map(file => (
-      <div key={file}>
-        <audio src={config.uploadDir + '/' + file} controls />
-      </div>
-    ))
-  ) : null;
-  
+  const hasFeedback = (feedback && feedback.length > 0) ||
+                      (feedback_text && feedback_text.length > 0);
+
   return (
     <div>
       <h3>{t("Full name")}: {student.last_name + ' ' + student.first_name}</h3>
 
-      { feedbackMarkup && <h3> {t("Feedback")} </h3> } { feedbackMarkup }
+      { hasFeedback && <h3> {t("Feedback")} </h3> }
+
+      { feedback_text && feedback_text.length > 0 && <div dangerouslySetInnerHTML={{ __html: feedback_text }} /> }
+
+      {
+        feedback && feedback.length > 0 && feedback.map(file => (
+          <div key={file}>
+            <audio src={config.uploadDir + '/' + file} controls />
+          </div>
+        ))
+      }
 
       <br/>
       { submissionMarkup }
