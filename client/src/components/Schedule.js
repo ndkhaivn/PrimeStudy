@@ -47,7 +47,7 @@ export default function Schedule() {
   };
 
   return (
-    <div>
+    <div className="main-panel">
       <FullCalendar
         locale={i18n.language}
         contentHeight='auto'
