@@ -1,11 +1,9 @@
 import { h } from 'preact';
 import { Provider } from 'react-redux';
 
-import MainPanel from './components/MainPanel';
-import Navigation from './components/Navigation';
-import store from './redux/store';
-import './App.css';
-
+import MainPanel from './MainPanel';
+import Navigation from './Navigation';
+import store from '../redux/store';
 
 export default function App() {
     return (
