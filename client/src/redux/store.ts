@@ -16,8 +16,7 @@ const enhancer = composeEnhancers(applyMiddleware(
 
 const store = createStore(reducers, initialState, enhancer);
 
-if (localStorage)
-{
+if (localStorage) {
     store.subscribe(() => {
         localStorage.setItem('UserData', JSON.stringify(store.getState()))
     });

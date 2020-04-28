@@ -6,30 +6,28 @@ import { RootState } from '../redux/reducers';
 import { emptyObj } from '../utility';
 import config from '../config';
 
-interface IDict
+interface Dict
 {
     [key: string]: string;
 }
 
-const CACHE: { [key: string]: IDict } = {};
+const CACHE: { [key: string]: Dict } = {};
 
-export function useTranslation()
-{
+export function useTranslation() {
+
     const dispatch = useDispatch();
     const lang = useSelector((s: RootState) => s.lang);
 
     const languageSetter = useCallback((newLang: string) => {
-        if (config.i18n.langs.includes(newLang) && lang !== newLang)
-        {
+        if (config.i18n.langs.includes(newLang) && lang !== newLang) {
             dispatch(actionSetLanguage(newLang));
         }
     }, [ lang ]);
 
-    const [ dict, setDict ] = useState<IDict>(emptyObj);
+    const [ dict, setDict ] = useState<Dict>(emptyObj);
 
     useEffect(() => {
-        if (CACHE[lang])
-        {
+        if (CACHE[lang]) {
             setDict(CACHE[lang]);
             return;
         }

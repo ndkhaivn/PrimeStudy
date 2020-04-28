@@ -5,8 +5,7 @@ import { Link } from 'preact-router';
 import { useTranslation } from '../hooks/useTranslation';
 import config from '../config';
 
-export default function Navigation()
-{
+export default function Navigation() {
     const langSelect = useRef<HTMLSelectElement>();
     const { t, setLang, lang } = useTranslation();
 

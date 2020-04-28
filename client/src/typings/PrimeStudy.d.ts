@@ -38,14 +38,14 @@ namespace PS
         students: UserID[];
         teachers: TeacherID[];
     }
-    
+
     interface Subject
     {
         id: SubjectID;
         name: string;
         color: string;
     }
-    
+
     interface Lesson
     {
         id: LessonID;
@@ -56,7 +56,7 @@ namespace PS
         date: Date;
         submission_due: Date;
     }
-    
+
     interface Submission
     {
         id: SubmissionID;

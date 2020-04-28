@@ -1,0 +1,47 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    ],
+    "rules": {
+        "block-scoped-var": "error",
+        "no-var": "error",
+        "prefer-const": "error",
+        "eol-last": "error",
+        "prefer-arrow-callback": "error",
+        "no-trailing-spaces": "error",
+        "quotes": ["warn", "single", { "avoidEscape": true }],
+        "eqeqeq": "error",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-warning-comments": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/camelcase": "off",
+        "node/no-missing-import": "off",
+        "node/no-empty-function": "off",
+        "node/no-unsupported-features/es-syntax": "off",
+        "node/no-missing-require": "off",
+        "node/shebang": "off",
+        "no-dupe-class-members": "off",
+        "require-atomic-updates": "off",
+        "brace-style": "warn",
+        "object-curly-spacing": [ "warn", "always" ]
+    },
+    "settings": {
+        "react": {
+            "pragma": "h",
+            "version": "16.0"
+        }
+    }
+}
