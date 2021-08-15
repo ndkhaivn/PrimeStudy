@@ -9,7 +9,8 @@ const lessonReducers = function(state = initialState, action) {
         return {
           ...action.payload,
           submission: JSON.parse(action.payload.studies[0].uploads),
-          feedback: JSON.parse(action.payload.studies[0].feedback)
+          feedback: JSON.parse(action.payload.studies[0].feedback),
+          feedbackText: action.payload.studies[0].feedback_text,
         }
       }
       return {

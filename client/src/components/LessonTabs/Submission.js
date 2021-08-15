@@ -14,7 +14,7 @@ export default function Submission(props) {
   const dispatch = useDispatch();
   const student = useSelector((state) => state.user.student);
   const lesson = useSelector(state => state.lesson);
-  const { submission, feedback, feedback_text } = lesson;
+  const { submission, feedback, feedbackText } = lesson;
   const { t } = useTranslation();
 
   // specify upload params and url for your files
@@ -70,7 +70,7 @@ export default function Submission(props) {
     />;
 
   const hasFeedback = (feedback && feedback.length > 0) ||
-                      (feedback_text && feedback_text.length > 0);
+                      (feedbackText && feedbackText.length > 0);
 
   return (
     <div>
@@ -78,7 +78,7 @@ export default function Submission(props) {
 
       { hasFeedback && <h3> {t("Feedback")} </h3> }
 
-      { feedback_text && feedback_text.length > 0 && <div dangerouslySetInnerHTML={{ __html: feedback_text }} /> }
+      { feedbackText && feedbackText.length > 0 && <div dangerouslySetInnerHTML={{ __html: feedbackText }} /> }
 
       {
         feedback && feedback.length > 0 && feedback.map(file => (
