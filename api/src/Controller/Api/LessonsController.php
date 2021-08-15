@@ -39,6 +39,11 @@ class LessonsController extends AppController
                     ]
                 ]);
 
+        foreach ($lessons as $lesson) {
+            $lesson->content = nl2br($lesson->content);
+            $lesson->requirements = nl2br($lesson->requirements);
+        }
+
         $this->set([
             'response' => $lessons,
             '_serialize' => 'response'
