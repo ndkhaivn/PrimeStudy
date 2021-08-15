@@ -44,6 +44,7 @@ export default function MainPanel() {
             </Route>
           </div>
         )}
+        <Redirect to='/' />
       </Switch>
     </div>
   );
