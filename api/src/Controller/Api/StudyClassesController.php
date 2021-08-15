@@ -5,6 +5,7 @@ use App\Controller\Api\AppController;
 use Cake\I18n\Date;
 use Cake\Log\Log;
 use DateTime;
+use function Neomerx\JsonApi\I18n\format;
 
 /**
  * StudyClasses Controller
@@ -22,10 +23,13 @@ class StudyClassesController extends AppController
         $start = new DateTime($this->request->getQuery('start'));
         $end = new DateTime($this->request->getQuery('end'));
 
+        $start = $start->format('Y-m-d');
+        $end = $end->format('Y-m-d');
+
         $students = $this->Students->find('all')
             ->where(['study_class_id' => $id])
-            ->contain(['Studies.Lessons.Subjects', 'Studies' => [
-                'conditions' => ['Studies.submitted >=' => $start, 'Studies.submitted <' => $end]
+            ->contain(['Studies.Lessons.Subjects', 'Studies.Lessons' => [
+                'conditions' => ['Lessons.date >=' => $start, 'Lessons.date <' => $end]
             ]])->all()->toList();
 
         $this->set([
