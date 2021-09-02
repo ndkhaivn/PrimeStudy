@@ -8,13 +8,16 @@ import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 function getCurrentWeek() {
-  const today = new Date();
-  const first = today.getDate() - today.getDay() + 1; // find the date of the last monday
-  const last = first + 6;
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  var monday = new Date(today);
+  var sunday = new Date(today);
+  monday.setDate(monday.getDate() - monday.getDay() + 1);
+  sunday.setDate(sunday.getDate() - sunday.getDay() + 7);
 
   return {
-    start: new Date(today.setDate(first)),
-    end: new Date(today.setDate(last))
+    start: monday,
+    end: sunday,
   }
 }
 
