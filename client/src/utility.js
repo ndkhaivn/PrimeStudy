@@ -6,6 +6,6 @@ export const toDateHeader = function(date, lang) {
 
     const parseDay = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
 
-    return `${parseDay[date.getDay()]} ngày ${date.getDate()} tháng ${date.getMonth()} năm ${date.getFullYear()}`;
+    return `${parseDay[date.getDay()]} ngày ${date.getDate()} tháng ${date.getMonth()+1} năm ${date.getFullYear()}`;
   }
 }
